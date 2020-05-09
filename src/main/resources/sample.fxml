@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="center" hgap="10" minHeight="300.0" minWidth="300" vgap="10"
+          xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="sample.MainController">
+
+    <children>
+        <GridPane fx:id = "firstGridPane" alignment="center" hgap="10" minHeight="200.0" minWidth="300" vgap="10" GridPane.columnIndex="0"
+                  GridPane.rowIndex="0">
+
+            <children>
+                <BorderPane GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <center>
+                        <Label fx:id="lbl2" text="Valuta da convertire" textAlignment="CENTER"/>
+                    </center>
+                </BorderPane>
+
+                <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <center>
+                        <Label fx:id="lbl3" text="Valuta convertita" textAlignment="CENTER" GridPane.columnIndex="1"
+                               GridPane.rowIndex="0"/>
+                    </center>
+                </BorderPane>
+
+                <ComboBox fx:id="combo1" prefWidth="150.0" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <ComboBox fx:id="combo2" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <TextField fx:id="textField1" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <TextField fx:id="textField2" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                <Label fx:id="updateLabel" text="Data ultimo aggiornamento:" GridPane.columnIndex="0"
+                       GridPane.rowIndex="3"/>
+                <Label fx:id="updatedDateLabel" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+            </children>
+
+        </GridPane>
+        <BorderPane fx:id = "borderPane" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <center>
+                <Button fx:id="updateButton" text="Aggiorna"/>
+            </center>
+        </BorderPane>
+    </children>
+
+</GridPane>
