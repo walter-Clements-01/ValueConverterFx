@@ -9,11 +9,24 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+
 public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/sample.fxml"));
+
+        URL url = this.getClass().getClassLoader().getResource("sample.fxml");
+        System.out.println(url);
+
+        InputStream inputStream = getClass().getResourceAsStream("/sample.fxml");
+
+        String sample = convert(inputStream,"UTF-8");
+
+        Parent root = FXMLLoader.load(url);
         stage.setTitle("Convertitore di valuta");
         stage.setScene(new Scene(root, 450, 350));
         stage.show();
@@ -26,8 +39,8 @@ public class Main extends Application {
         Label updateLabel = (Label) scene.lookup("#updateLabel");
         Button updateButton = (Button) scene.lookup("#updateButton");
 
-        MainController mainController = new MainController(leftBox,rightBox,leftTextField,rightTextField,updateLabel,updateButton);
-        mainController.setComboBoxes();
+        /*MainController mainController = new MainController();
+        mainController.setComboBoxes();*/
 
 
         /*ArrayList<String> leftList = new ArrayList<>();
@@ -37,5 +50,18 @@ public class Main extends Application {
     }
     public static void main(String[] args) {
         launch(args);
+    }
+    public String convert(InputStream inputStream, String charset) throws Exception {
+
+        StringBuilder stringBuilder = new StringBuilder();
+        String line = null;
+
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, charset))) {
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+        }
+
+        return stringBuilder.toString();
     }
 }

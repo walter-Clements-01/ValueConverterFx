@@ -19,12 +19,11 @@ public class ComboBoxUtil
         catch (IOException i)
         {
             comboBoxes= new ComboBoxes();
-            i.printStackTrace();
-        } catch (ClassNotFoundException c)
+        }
+        catch (ClassNotFoundException c)
         {
             comboBoxes= new ComboBoxes();
             System.out.println("Employee class not found");
-            c.printStackTrace();
         }
         return comboBoxes;
     }
