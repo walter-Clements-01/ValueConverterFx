@@ -1,5 +1,9 @@
 package sample;
+import sample.controller.ComboBoxes;
+import sample.utils.ComboBoxUtil;
+
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -8,6 +12,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -32,20 +38,27 @@ public class Main extends Application {
         stage.show();
 
         Scene scene = stage.getScene();
-        ComboBox<String> leftBox = (ComboBox<String>) scene.lookup("#combo1");
-        ComboBox<String> rightBox = (ComboBox<String>) scene.lookup("#combo2");
-        TextField leftTextField = (TextField) scene.lookup("#textField1");
+
+        ComboBox<String> leftBox = (ComboBox<String>) scene.lookup("#leftBox");
+        leftBox.setEditable(true);
+        ComboBox<String> rightBox = (ComboBox<String>) scene.lookup("#rightBox");
+        rightBox.setEditable(true);
+
+        /*TextField leftTextField = (TextField) scene.lookup("#textField1");
         TextField rightTextField = (TextField) scene.lookup("#textField2");
         Label updateLabel = (Label) scene.lookup("#updateLabel");
-        Button updateButton = (Button) scene.lookup("#updateButton");
+        Button updateButton = (Button) scene.lookup("#updateButton");*/
 
-        /*MainController mainController = new MainController();
-        mainController.setComboBoxes();*/
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                ComboBoxes comboBoxes = new ComboBoxes();
+                comboBoxes.setBoxInit(leftBox.getSelectionModel().getSelectedItem());
+                comboBoxes.setBoxFin(rightBox.getSelectionModel().getSelectedItem());
 
-
-        /*ArrayList<String> leftList = new ArrayList<>();
-        leftList.add("test");
-        leftBox.setItems(FXCollections.observableList(leftList));*/
+                ComboBoxUtil.save(comboBoxes);
+            }
+        });
 
     }
     public static void main(String[] args) {

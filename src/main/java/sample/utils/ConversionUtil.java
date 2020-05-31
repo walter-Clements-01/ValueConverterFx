@@ -3,6 +3,9 @@ package sample.utils;
 public class ConversionUtil {
 
     public static String exeConversion(String startText, Double startRate, Double endRate) {
+        System.out.println(startText);
+        System.out.println(startRate);
+        System.out.println(endRate);
         Double toConvert;
         String convertedText = "";
         try {
